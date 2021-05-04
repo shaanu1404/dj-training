@@ -7,4 +7,7 @@ def give_response(request):
 
 
 def add_value(request):
-    return render(request, 'products/about.html')
+    context = {
+        "name": "sysorex"
+    }
+    return render(request, 'products/about.html', context)
