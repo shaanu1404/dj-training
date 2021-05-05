@@ -1,14 +1,20 @@
 from django.shortcuts import render
+from .models import Product
 
 
-def give_response(request):
-    a = 3 + 5
-    return render(request, 'products/index.html', {"a": a, "name": 'sysorex'})
+def all_products_view(request):
+    all_products = Product.objects.all()
+    return render(request, 'products/list.html', {"all_products": all_products})
 
 
-def add_value(request):
+def single_product_view(request, id):
+    product = None
+    try:
+        product = Product.objects.get(id=id)
+    except Product.DoesNotExist:
+        print("Product does not exist")
+
     context = {
-        "name": "sysorex",
-        "age": 3
+        "product": product
     }
-    return render(request, 'products/about.html', context)
+    return render(request, 'products/detail.html', context)
