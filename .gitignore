@@ -162,3 +162,7 @@ Thumbs.db
 .vscode/
 
 # End of https://www.toptal.com/developers/gitignore/api/django
+
+
+# Assignments
+assignment1.txt
