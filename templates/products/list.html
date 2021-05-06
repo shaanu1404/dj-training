@@ -1,24 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Django Products</title>
-</head>
-<body>
-    <h1>Django products page</h1>
-    <div>
-        {% for product in all_products %}
-            <div>
-                <h1>
-                    <a href="/{{ product.id }}">{{ product.title }}</a>
-                </h1>
-                <p>Price - {{ product.price }}</p>
-                <p>{{ product.description }}</p>
-                <p style="background-color: aqua;">{{ product.category.name }}</p>
-            </div>
-        {% endfor %}
+{% extends 'base.html' %}
+
+{% block title %} List {% endblock %}
+
+{% block content %}
+<h1>Django products page</h1>
+<div>
+    <a href="/create">Create product</a>
+
+    {% for product in all_products %}
+    <div style="border: 1px solid black; padding: 1rem;">
+        <h1>
+            <a href="/{{ product.id }}">{{ product.title }}</a>
+        </h1>
+        <p>Price - {{ product.price }}</p>
+        <p>{{ product.description }}</p>
+        <p style="background-color: aqua;">{{ product.category.name }}</p>
+        <div>
+            <p><a href="/{{ product.id }}/edit">Edit</a></p>
+            <p><a href="/{{ product.id }}/delete">Delete</a></p>
+        </div>
     </div>
-</body>
-</html>
+    {% endfor %}
+</div>
+{% endblock %}
