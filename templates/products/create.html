@@ -5,7 +5,7 @@
 {% block content %}
 
 <h1>Create new product</h1>
-<form action="/create/" method="POST">
+<form action="{% url 'create_new_product' %}" method="POST">
 
     {% csrf_token %}
 

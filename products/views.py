@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse
+
 from .models import Product, Category
 
 
@@ -42,7 +44,7 @@ def create_new_product(request):
             new_product = Product(
                 title=title, description=description, price=price, category=category)
             new_product.save()
-            return redirect('/')
+            return redirect(reverse('all_products'))
 
     context = {
         "categories": Category.objects.all()
@@ -69,7 +71,7 @@ def edit_product(request, id):
             product.price = price
             product.category = category
             product.save()
-            return redirect('/')
+            return redirect(reverse('all_products'))
 
     context = {
         "product": product,
@@ -85,7 +87,7 @@ def delete_product(request, id):
 
     if request.method == 'POST':
         product.delete()
-        return redirect('/')
+        return redirect(reverse('all_products'))
 
     context = {
         "product": product

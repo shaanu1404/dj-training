@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Product(models.Model):
@@ -10,6 +11,12 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self, *args, **kwargs):
+        return reverse('get_single_product', kwargs={'id': self.id})
+
+    def get_doubled_price(self):
+        return 2 * self.price
 
 
 class Category(models.Model):

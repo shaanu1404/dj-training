@@ -5,21 +5,24 @@
 {% block content %}
 <h1>Django products page</h1>
 <div>
-    <a href="/create">Create product</a>
+    <a href="{% url 'create_new_product' %}" class="btn btn-primary my-2">Create product</a>
 
     {% for product in all_products %}
+    
     <div style="border: 1px solid black; padding: 1rem;">
         <h1>
-            <a href="/{{ product.id }}">{{ product.title }}</a>
+            <a href="{{ product.get_absolute_url }}">{{ product.title }}</a>
         </h1>
         <p>Price - {{ product.price }}</p>
+        <p>Doubled Price - {{ product.get_doubled_price }}</p>
         <p>{{ product.description }}</p>
         <p style="background-color: aqua;">{{ product.category.name }}</p>
         <div>
-            <p><a href="/{{ product.id }}/edit">Edit</a></p>
-            <p><a href="/{{ product.id }}/delete">Delete</a></p>
+            <a href="{% url 'update_product' product.id %}" class="btn btn-warning mr-2">Edit</a>
+            <a href="{% url 'delete_product' product.id %}" class="btn btn-danger">Delete</a>
         </div>
     </div>
+    
     {% endfor %}
 </div>
 {% endblock %}

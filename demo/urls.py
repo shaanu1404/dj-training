@@ -4,11 +4,11 @@ from django.urls import path
 from products.views import all_products_view, single_product_view, create_new_product, edit_product, delete_product
 
 urlpatterns = [
-    path('', all_products_view),    # localhost:8000/
-    path('create/', create_new_product),  # localhost:8000/create
-    path('<int:id>/', single_product_view),  # localhost:8000/1
-    path('<int:id>/edit/', edit_product),  # localhost:8000/1/edit
-    path('<int:id>/delete/', delete_product),  # localhost:8000/1/delete
+    path('', all_products_view, name='all_products'),    # localhost:8000/
+    path('create/', create_new_product, name='create_new_product'),  # localhost:8000/create
+    path('<int:id>/', single_product_view, name='get_single_product'),  # localhost:8000/1
+    path('<int:id>/edit/', edit_product, name='update_product'),  # localhost:8000/1/edit
+    path('<int:id>/delete/', delete_product, name='delete_product'),  # localhost:8000/1/delete
     path('admin/', admin.site.urls),
 ]
 
