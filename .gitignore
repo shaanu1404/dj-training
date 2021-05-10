@@ -165,4 +165,5 @@ Thumbs.db
 
 
 # Assignments
-assignment1.txt
+assignment*.txt
+todo*.txt

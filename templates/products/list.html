@@ -18,14 +18,17 @@
     <div class="col-12 col-md-3 col-lg-4 mb-3">
         <a href="{{ product.get_absolute_url }}" class="text-dark text-decoration-none">
             <div class="card card-body">
+                {% if product.image %}
+                <img src="{{ product.image.url }}" alt="">
+                {% endif %}
                 <div class="d-flex justify-content-between align-items-center">
-                    <h4 class="text-capitalize">
-                        {{ product.title }}
+                    <h4 class="">
+                        {{ product.title | title }}
                     </h4>
                     <p class="fw-bold">₹ {{ product.price }}</p>
                 </div>
                 <span class="badge rounded-pill bg-secondary text-capitalize mb-1">{{ product.category.name }}</span>
-                <p>{{ product.description }}</p>
+                <p>{{ product.description | truncatechars:15 }}</p>
                 <div class="mt-2 text-end">
                     <a href="{% url 'update_product' product.id %}" class="btn btn-warning mr-2">Edit</a>
                     <a href="{% url 'delete_product' product.id %}" class="btn btn-danger">Delete</a>
@@ -33,6 +36,10 @@
             </div>
         </a>
     </div>
+
+    {% empty %}
+
+    <p class="text-center">No products available</p>
 
     {% endfor %}
 

@@ -12,28 +12,27 @@
             {% csrf_token %}
 
             <div class="mb-2">
-                <label for="title" class="form-label">Title</label>
-                <input type="text" name="title" id="title" class="form-control">
+                <label for="{{ form.title.id_for_label }}" class="form-label">
+                    {{ form.title.label }}
+                </label>
+                {{ form.title }}
+                <p class="text-muted">{{ form.title.help_text }}</p>
+                {{ form.title.errors }}
             </div>
             <div class="mb-2">
-                <label for="description" class="form-label">Description</label>
-                <textarea name="description" id="description" rows="3" class="form-control"></textarea>
+                <label for="form.description.id_for_label" class="form-label">{{ form.description.label }}</label>
+                {{ form.description }}
             </div>
             <div class="mb-2">
-                <label for="price" class="form-label">Price</label>
-                <input type="number" name="price" id="price" class="form-control">
+                <label for="{{ form.price.id_for_label }}" class="form-label">{{ form.price.label }}</label>
+                {{ form.price }}
+                {% for error in form.price.errors %}
+                    {{ error }}
+                {% endfor %}
             </div>
             <div class="mb-2">
-                <label for="category" class="form-label">Category</label>
-                <select name="category" id="category" class="form-control">
-                    <option value="">--select--</option>
-
-                    {% for category in categories %}
-
-                    <option value="{{ category.id }}">{{ category.name }}</option>
-
-                    {% endfor %}
-                </select>
+                <label for="{{ form.category.id_for_label }}" class="form-label">{{ form.category.label }}</label>
+                {{ form.category }}
             </div>
             <button type="submit" class="btn btn-primary mt-1">Submit</button>
             <a href="{% url 'all_products' %}" class="btn btn-secondary mt-1">Cancel</a>
