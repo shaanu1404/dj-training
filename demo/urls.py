@@ -10,7 +10,8 @@ from products.views import (
     edit_product,
     delete_product,
     contact_form_view,
-    )
+)
+from accounts.views import user_register, login_user, logout_view
 
 urlpatterns = [
     path('', all_products_view, name='all_products'),    # localhost:8000/
@@ -23,6 +24,10 @@ urlpatterns = [
     path('<int:id>/edit/', edit_product, name='update_product'),
     path('<int:id>/delete/', delete_product,
          name='delete_product'),  # localhost:8000/1/delete
+
+    path('register/', user_register, name="register"),
+    path('login/', login_user, name="login"),
+    path('logout/', logout_view, name="logout"),
     path('admin/', admin.site.urls),
 ]
 
@@ -33,5 +38,7 @@ urlpatterns = [
 # localhost:8000/ID/edit  -- EDIT -- PUT/PATCH
 # localhost:8000/ID/delete  -- DELETE -- DELETE
 
-urlpatterns = urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns = urlpatterns + \
+    static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns = urlpatterns + \
+    static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

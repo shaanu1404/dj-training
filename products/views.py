@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
 from .models import Product, Category
 from .forms import ProductForm, ContactForm
@@ -38,6 +39,9 @@ def single_product_view(request, id):
 def create_new_product(request):
     """Create new product"""
 
+    if not request.user.is_authenticated:
+        return redirect(reverse('all_products'))
+
     form = ProductForm(request.POST or None)
 
     if request.method == "POST":
@@ -64,6 +68,7 @@ def create_new_product(request):
     return render(request, 'products/create.html', context)
 
 
+@login_required
 def edit_product(request, id):
     """Edit product using id"""
 
@@ -92,6 +97,7 @@ def edit_product(request, id):
     return render(request, 'products/edit.html', context)
 
 
+@login_required
 def delete_product(request, id):
     """Delete product using id"""
 
