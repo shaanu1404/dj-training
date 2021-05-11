@@ -117,6 +117,6 @@ def contact_form_view(request):
             print(form.cleaned_data['message'])
 
     context = {
-        "form" : form
+        "form": form
     }
     return render(request, 'contact.html', context)

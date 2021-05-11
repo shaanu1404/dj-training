@@ -9,7 +9,8 @@ from products.views import (
     create_new_product,
     edit_product,
     delete_product,
-    contact_form_view)
+    contact_form_view,
+    )
 
 urlpatterns = [
     path('', all_products_view, name='all_products'),    # localhost:8000/
