@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>List view</h1>
+
+{% for book in book_list %}
+
+<h4>{{ book }}</h4>
+
+{% endfor %}
+
+{% endblock %}
