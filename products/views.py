@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Product, Category
 from .forms import ProductForm, ContactForm
 
-
+@login_required
 def all_products_view(request):
     """Get all products"""
 
