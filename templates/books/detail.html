@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-4 mx-auto">
+            <div class="card card-body">
+                <h3>{{ book.title }}</h3>
+                <p>{{ book.description }}</p>
+                <hr>
+                <div class="text-right">
+                    <a href="{% url 'update' book.id %}" class="btn btn-link">Edit</a>
+                    <a href="{% url 'delete' book.id %}" class="btn btn-link">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

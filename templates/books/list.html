@@ -2,12 +2,31 @@
 
 {% block content %}
 
-<h1>List view</h1>
+<div class="container">
 
-{% for book in book_list %}
+    <h1>List view</h1>
 
-<h4>{{ book }}</h4>
+    <div class="row">
 
-{% endfor %}
+        {% for book in book_list %}
+
+        <div class="col-12 col-md-6 col-lg-4 mb-2">
+            <a href="{% url 'detail' book.id %}" style="text-decoration: none;">
+                <div class="card card-body">
+                    <h3>{{ book.title }}</h3>
+                    <p>{{ book.description }}</p>
+                    <hr>
+                    <div class="text-right">
+                        <a href="{% url 'update' book.id %}" class="btn btn-link">Edit</a>
+                        <a href="{% url 'delete' book.id %}" class="btn btn-link">Delete</a>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        {% endfor %}
+    </div>
+
+</div>
 
 {% endblock %}
